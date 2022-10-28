@@ -22,3 +22,4 @@ print(dados.shape[0])
 print(dados.shape[1], '\n')
 
 print('A base de dados apresenta {} registros (imoveis) e {} variaveis.'.format(dados.shape[0], dados.shape[1]))
+
