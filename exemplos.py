@@ -42,3 +42,27 @@ alunos = pd.DataFrame({'Nome': ['Ary', 'Cátia', 'Denis', 'Beto', 'Bruna', 'Dara
                         'Notas': [7.5, 2.5, 5.0, 10, 8.2, 7, 6, 5.6], 
                         'Aprovado': [True, False, False, True, True, True, False, False]}, 
                         columns = ['Nome', 'Idade', 'Sexo', 'Notas', 'Aprovado'])
+
+selecao = alunos['Aprovado'] == True
+aprovados = alunos[selecao]
+print(aprovados, '\n')
+
+selecao = (alunos.Aprovado == True) & (alunos.Sexo == 'F')
+aprovadas = alunos[selecao]
+print(aprovadas, '\n')
+
+selecao = ((alunos.Idade > 10) & (alunos.Idade < 20)) | (alunos.Idade >= 40)
+print(alunos[selecao], '\n')
+
+imoveis = pd.DataFrame([['Apartamento', None, 970, 68], 
+                        ['Apartamento', 2000, 878, 112], 
+                        ['Casa', 5000, None, 500], 
+                        ['Apartamento', None, 1010, 170], 
+                        ['Apartamento', 1500, 850, None], 
+                        ['Casa', None, None, None], 
+                        ['Apartamento', 2000, 878, None], 
+                        ['Apartamento', 1550, None, 228], 
+                        ['Apartamento', 2500, 880, 195]], 
+                        columns = ['Tipo', 'Valor', 'Condominio', 'IPTU'])
+
+
