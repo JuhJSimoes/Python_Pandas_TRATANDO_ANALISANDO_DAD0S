@@ -66,3 +66,22 @@ imoveis = pd.DataFrame([['Apartamento', None, 970, 68],
                         columns = ['Tipo', 'Valor', 'Condominio', 'IPTU'])
 
 
+imoveis.dropna(subset = ['Valor'], inplace = True)
+print(imoveis)
+
+selecao = (imoveis['Tipo'] == 'Apartamento') & (imoveis['Condominio'].isnull())
+imoveis = imoveis[selecao]
+print(imoveis)
+
+imoveis = imoveis.fillna({'Condominio': 0, 'IPTU': 0})
+print(imoveis)
+
+imoveis.index = range(imoveis.shape[0])  # type: ignore
+print(imoveis, '\n')
+
+atletas = pd.DataFrame([['Marcos', 9.62], ['Pedro', None], ['João', 9.69], 
+                        ['Beto', 9.72], ['Sandro', None], ['Denis', 9.69], 
+                        ['Ary', None], ['Carlos', 9.74]], 
+                        columns = ['Corredor', 'Melhor Tempo'])
+print(atletas)
+
