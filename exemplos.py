@@ -102,5 +102,40 @@ alunos['Faixa Etária'] = alunos['Idade'].apply(lambda x: 'Menor que 20 anos' if
         else ('Entre 20 e 40 anos' if (x >= 20 and x <= 40) 
             else 'Maior que 40 anos'))
 print(alunos, '\n')
-    
+
+
+m1 = 'CCcCCccCCCccCcCccCcCcCCCcCCcccCCcCcCcCcccCCcCcccCc'
+m2 = 'CCCCCccCccCcCCCCccCccccCccCccCCcCccCcCcCCcCccCccCc'
+m3 = 'CccCCccCcCCCCCCCCCCcccCccCCCCCCccCCCcccCCCcCCcccCC'
+m4 = 'cCCccCCccCCccCCccccCcCcCcCcCcCcCCCCccccCCCcCCcCCCC'
+m5 = 'CCCcCcCcCcCCCcCCcCcCCccCcCCcccCccCCcCcCcCcCcccccCc'
+
+eventos = {'m1': list(m1), 
+            'm2': list(m2), 
+            'm3': list(m3), 
+            'm4': list(m4), 
+            'm5': list(m5)}
+
+moedas = pd.DataFrame(eventos)
+df = pd.DataFrame(data = ['Cara', 'Coroa'], index = ['c', 'C'], columns = ['Faces'])
+
+for item in moedas:
+    df = pd.concat([df, moedas[item].value_counts()], 
+                    axis = 1)
+print(df, '\n')
+
+import pandas as pd
+alunos = pd.DataFrame({'Nome': ['Ary', 'Cátia', 'Denis', 'Beto', 'Bruna', 'Dara', 'Carlos', 'Alice'], 
+                        'Sexo': ['M', 'F', 'M', 'M', 'F', 'F', 'M', 'F'], 
+                        'Idade': [15, 27, 56, 32, 42, 21, 19, 35], 
+                        'Notas': [7.5, 2.5, 5.0, 10, 8.2, 7, 6, 5.6], 
+                        'Aprovado': [True, False, False, True, True, True, False, False]}, 
+                        columns = ['Nome', 'Idade', 'Sexo', 'Notas', 'Aprovado'])
+
+#Como devemos proceder para obter um DataFrame com as notas médias dos alunos, com duas casas decimais, segundo seu sexo?
+sexo = alunos.groupby('Sexo')
+sexo = pd.DataFrame(sexo['Notas'].mean().round(2))
+sexo.columns = ['Notas Médias']
+print(sexo)
+
 
