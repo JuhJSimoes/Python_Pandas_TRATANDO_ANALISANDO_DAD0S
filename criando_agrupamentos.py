@@ -6,9 +6,9 @@ print(dados.head(10), '\n')
 
 print(dados['Valor'].mean(), '\n')
 
-'''bairros = ['Barra da Tijuca', 'Copacabana', 'Ipanema', 'Leblon', 'Botafogo', 'Flamengo', 'Tijuca']
+bairros = ['Barra da Tijuca', 'Copacabana', 'Ipanema', 'Leblon', 'Botafogo', 'Flamengo', 'Tijuca']
 selecao = dados['Bairro'].isin(bairros)
-dados = dados[selecao]'''
+dados = dados[selecao]
 print(dados['Bairro'].drop_duplicates(), '\n')
 
 grupo_bairro = dados.groupby('Bairro')
@@ -27,6 +27,14 @@ print(grupo_bairro['Valor'].aggregate(['min', 'max', 'sum']).rename(columns = {'
 
 plt.rc('figure', figsize=(20,10))
 
-print(grupo_bairro['Valor'].std().plot.bar(color='blue'))
+fig = grupo_bairro['Valor'].mean().plot.bar(color='blue')
+fig.set_ylabel('Valor Aluguel')
+fig.set_title('Valor Médio do Aluguel por Bairro', {'fontsize': 22})
 plt.show() #para exibir no VS Code
+
+fig = grupo_bairro['IPTU'].mean().plot.bar(color='blue')
+fig.set_ylabel('Valor Aluguel')
+fig.set_title('Valor Médio do IPTU por Bairro', {'fontsize': 22})
+plt.show() #para exibir no VS Code
+
 

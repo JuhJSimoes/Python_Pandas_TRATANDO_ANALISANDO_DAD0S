@@ -136,6 +136,28 @@ alunos = pd.DataFrame({'Nome': ['Ary', 'Cátia', 'Denis', 'Beto', 'Bruna', 'Dara
 sexo = alunos.groupby('Sexo')
 sexo = pd.DataFrame(sexo['Notas'].mean().round(2))
 sexo.columns = ['Notas Médias']
-print(sexo)
+print(sexo, '\n')
+
+precos = pd.DataFrame([['Feira', 'Cebola', 2.5], 
+                        ['Mercado', 'Cebola', 1.99], 
+                        ['Supermercado', 'Cebola', 1.69], 
+                        ['Feira', 'Tomate', 4], 
+                        ['Mercado', 'Tomate', 3.29], 
+                        ['Supermercado', 'Tomate', 2.99], 
+                        ['Feira', 'Batata', 4.2], 
+                        ['Mercado', 'Batata', 3.99], 
+                        ['Supermercado', 'Batata', 3.69]], 
+                        columns = ['Local', 'Produto', 'Preço'])
+print(precos)
+
+produtos = precos.groupby('Produto', sort = False)
+print(produtos.describe().round(2), '\n')
+
+estatisticas = ['mean', 'std', 'min', 'max']
+nomes = {'mean': 'Média', 'std': 'Desvio Padrão', 
+    'min': 'Mínimo', 'max': 'Máximo'}
+print(produtos['Preço'].aggregate(estatisticas).rename(columns = nomes).round(2), '\n')
+
+
 
 
