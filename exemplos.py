@@ -159,5 +159,13 @@ nomes = {'mean': 'Média', 'std': 'Desvio Padrão',
 print(produtos['Preço'].aggregate(estatisticas).rename(columns = nomes).round(2), '\n')
 
 
+Q1 = 21.25
+Q3 = 42.31
+IIQ = Q3 - Q1
+print(IIQ)
 
+limite_inferior = Q1 - 1.5 * IIQ
+print(limite_inferior)
+limite_superior = Q3 + 1.5 * IIQ
+print(limite_superior)
 
