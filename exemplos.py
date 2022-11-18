@@ -167,5 +167,28 @@ print(IIQ)
 limite_inferior = Q1 - 1.5 * IIQ
 print(limite_inferior)
 limite_superior = Q3 + 1.5 * IIQ
-print(limite_superior)
+print(limite_superior, '\n')
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+plt.rc('figure', figsize = (15, 7))
+
+dados = pd.read_csv('dados/aluguel_amostra.csv', sep = ';')
+area = plt.figure()
+g1 = area.add_subplot(1, 2, 1)
+g2 = area.add_subplot(1, 2, 2)
+grupo1 = dados.groupby('Tipo Agregado')['Valor']
+label = grupo1.count().index
+valores = grupo1.count().values
+g1.pie(valores, labels = label, autopct='%1.1f%%')
+g1.set_title('Total de Imóveis por Tipo Agregado')
+grupo2 = dados.groupby('Tipo')['Valor']
+label = grupo2.count().index
+valores = grupo2.count().values
+g2.pie(valores, labels = label, autopct='%1.1f%%', explode = (.1, .1, .1, .1, .1))
+g2.set_title('Total de Imóveis por Tipo')
+
+plt.show()
+area.savefig('exemplo_grafico.png', dpi=300, bbox_inches='tight')
 
