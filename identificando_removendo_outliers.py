@@ -54,7 +54,7 @@ for tipo in grupo_tipo.groups.keys():
 
 print(dados_new.head(10))
 dados_new.boxplot(['Valor'], by = ['Tipo'])
-#plt.show()
+plt.show()
 
 dados_new.to_csv('dados/aluguel_residencial_sem_outliers.csv', sep=';', index=False)
 
